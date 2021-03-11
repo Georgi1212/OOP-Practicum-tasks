@@ -218,9 +218,9 @@ public:
 	{
 		return planet.republic;//
 	}*/
-	planet.getPlanetName();
-	planet.getPlanetSystem();
-	planet.getRepublic();
+//	planet.getPlanetName();
+//	planet.getPlanetSystem();
+//	planet.getRepublic();
 	
 	char* getJediSpicies()
 	{
