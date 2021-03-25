@@ -1,12 +1,13 @@
+#include "classPlanet.hpp"
 #include "classStormtrooper.hpp"
 
-void Stormtrooper::printStormtrooper() const
+/*void Stormtrooper::printStormtrooper() const
 {
 	cout << "id: " << id << endl;
 	cout << "StormtrooperRank: " << rank << endl;
 	cout << "Type: " << type << endl;
-	//planet.printPlanet(const Pl& planet);					
-}
+	printPlanet(planet);					
+}*/
 
 void Stormtrooper::setStormtrooperId(const char* other_id)
 {
@@ -106,4 +107,59 @@ Stormtrooper::~Stormtrooper()
 	id = NULL;
 	delete[] type;
 	type = NULL;
+}
+
+// Поправи го на всички да е за стормтроопер !!!!!!!!!!
+
+ostream& operator<<(ostream& os, const Stormtrooper& strooper)
+{
+	os << strooper.id << endl;
+	os << strooper.type << endl;
+	os << strooper.planet.getPlanetName() << endl;
+	
+	switch (strooper.rank)
+	{
+		case(StormtrooperRank)0: os << "Cadet" << endl; break;
+		case(StormtrooperRank)1: os << "Private" << endl; break;
+		case(StormtrooperRank)2: os << "Sergeant" << endl; break;
+		case(StormtrooperRank)3: os << "Major" << endl; break;
+		case(StormtrooperRank)4: os << "General" << endl; break;
+		case(StormtrooperRank)5: os << "Commander" << endl; break;
+	
+		default: os << "There's no such planet" << endl; break;
+	}
+  
+  return os;
+}
+
+istream& operator>>(istream& is, Stormtrooper& strooper)
+{
+	delete[] strooper.id;
+	delete[] strooper.type;
+	
+	char* buffer = new char[100];
+	int temp;
+	
+	//cout << "Stormtrooper's id:";
+	is.getline(buffer, 100);
+	strooper.id = new char[strlen(buffer) + 1];
+	strcpy(strooper.id, buffer);
+	
+	//cout << "Stormtrooper's rank:";
+	is >> temp;
+	strooper.rank = (StormtrooperRank)temp;
+	
+	//Planet;
+	is >> strooper.planet;
+	
+	//cout << "Stormtrooper's type:";
+	is.getline(buffer, 100);
+	strooper.type = new char[strlen(buffer) + 1];
+	strcpy(strooper.type, buffer);
+	
+	is.ignore();
+	
+	delete[] buffer;
+	
+	return is;
 }
