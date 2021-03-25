@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <cstring>
 #include "classPlanet.hpp"
@@ -17,7 +18,11 @@ private:
 	char* militaryRank;
 
 public:
-	void printJedi() const;
+//	void printJedi() const;
+	/*void printJedi(Jedi& jedi)
+	{
+		cout << jedi << endl;
+	}*/
 	
 	void setJediName(const char* other_jediName);
 	void setJediRank(JediRank other_jediRank);
@@ -40,6 +45,16 @@ public:
 	Jedi(const char* _name, const JediRank _rank, const float _midi_chlorian, const Planet _planet, const char* _spicies, const char* _militaryRank);
 	Jedi(const Jedi& other);
 	Jedi& operator=(const Jedi& other);
+	bool operator==(const Jedi& other) const;
+	bool operator!=(const Jedi& other) const;
 	~Jedi();
 	
+	friend ostream& operator<<(ostream& os, const Jedi& jedi);
+	friend istream& operator>>(istream& is, Jedi& jedi);
+	
 };
+
+void printJedi(Jedi& jedi)
+{
+	cout << jedi << endl;
+}
