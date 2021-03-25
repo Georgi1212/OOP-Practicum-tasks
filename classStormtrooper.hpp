@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <cstring>
 #include "classPlanet.hpp"
@@ -14,7 +15,7 @@ private:
 	Planet planet;
 	
 public:
-	void printStormtrooper() const;
+//	void printStormtrooper() const;
 	
 	void setStormtrooperId(const char* other_id);
 	void setStormtrooperRank(StormtrooperRank other_stormtrooperRank);
@@ -32,4 +33,11 @@ public:
 	Stormtrooper& operator=(const Stormtrooper& other);
 	~Stormtrooper();
 	
+	friend ostream& operator<<(ostream& os, const Stormtrooper& strooper);
+	friend istream& operator>>(istream& is, Stormtrooper& strooper);
 };
+
+void printStormtrooper(Stormtrooper& strooper)
+{
+	cout << strooper << endl;
+}
